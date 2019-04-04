@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/buttons.css"/>
+		<style type="text/css">
+			input{height: 35px;}
+			
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var score=[]
+// 			var arr1=[true,"sjb","hp"],n=3225654454367,
+// 			document.write(arr1[1])
+// 			var arr2=[]
+// 			arr2[9]=new Date()
+// 			 arr2[7]="奴胡"
+// 			document.write(arr1.length)
+// 			delete arr1[1]
+// 			document.write(arr1[1])
+// 			// delete只能删除下标
+// 			document.write("<br>")
+// 			document.write(arr1.indexOf("hp"))
+// 			document.write(Array.isArray(arr1))
+// 			arr1=arr1.concat(arr2)
+// 			document.write("|||||")
+// 			// toString(arr1)
+// 			document.write("valueof-"+arr1.valueof+"<br>")
+// 			document.write("totring-"+arr1.toString()+"<br>")
+// 			document.write("tolocalstring-"+arr2.toLocaleString()+"<br>")
+// 			document.write("join-"+arr2.join("—"))
+// 			
+// 			
+// 			
+// 			for (var i in arr1) {
+// 				document.write(i+"&nbsp"+arr1[i]+"<br>")
+// 			}
+			function caculate()
+			{ 
+				var text=document.getElementById("text").value
+				var n=0,p=text.split("+")
+				for (i=0;i<p.length;i++) {
+					n+=Number(p[i])	
+				}
+				alert(n)
+				
+			}
+			
+			function output(m)
+			{
+				switch (m){
+				case 1:
+				{
+					var a1=1, a2=a3=0
+				for (;a1<10;a1++) 
+					{
+						for (a2=0;a2<10;a2++) 
+						{
+							for (a3=0;a3<10;a3++) 
+							{
+								if(a3==a2+a1)
+								document.write(a1+""+a2+""+a3+"<br>")
+								
+							}
+						}
+					}
+				}break;
+				case 2:
+				{
+					for (a1=1;a1<10;a1++) 
+						{
+							for (a2=0;a2<10;a2++) 
+							{	
+								if(a2-a1==1||a1-a2==1)
+								document.write(a1+""+a2+"<br>")
+							}
+						}
+					}break;
+				case 3:
+				{
+					var text=document.getElementById("score").value
+					var n=0,p=text.split(" "),up=0,down=0
+					
+					if(p.length<5)
+					{
+					document.getElementById("score2").innerHTML="哎呀"
+					document.getElementById("score3").innerHTML="没有5科我不想给你算"
+					
+					}
+					else
+					{
+						
+					for (i=0;i<p.length;i++) {
+						console.log(Number(p[i]))
+						if(isNaN(Number(p[i]))||Number(p[i])>100||Number(p[i])<0)
+						{
+							alert("你看看哪里写错了")
+							return 0;
+						}
+						n+=Number(p[i])
+							if(Number(p[i])>=60)up++
+							else down++
+							
+					}
+					
+					console.log(up,down);
+					
+					document.getElementById("score2").innerHTML=("<br>平均成绩"+n/p.length)
+					if(up==0)document.getElementById("score3").innerHTML=("<br>没人及格好可惜啊")
+					else document.getElementById("score3").innerHTML=("<br>及格率"+up/(up+down))
+					}
+					document.getElementById("score1").innerHTML=text
+					
+				}break;
+				case 4:
+				{
+					for(i=1,n=0;i<=100;i++)
+					{
+						if(i%3!=0)n+=i
+					
+					}
+					document.write(n+"<br>")
+				}break;	
+				case 5:
+				{
+					for(i=1,n=0;i<=10;i++)
+					{
+						n+=i
+						if (n>20)break
+					}
+					document.write(n)
+					
+				}
+				case 66:
+				{
+					var n=0,up=0,down=0,temp=Number(document.getElementById("score").value)
+				
+					if(isNaN(temp)||temp>100||temp<0)
+					alert("非法成绩")
+					else 
+					{
+						score.push(temp)
+						document.getElementById("score").value=""
+					}
+					score_output()
+				}
+			}
+				
+		
+				
+				
+			}
+			function del()
+			{
+				score.pop()
+				score_output()
+			}
+			function del_all()
+			{
+				var all=score.length
+				for(i=0;i<all;i++)
+				score.pop()
+				score_output()
+			}
+			function del_once()
+			{
+				var num=prompt("你想改第几个，不写默认改最后一个")-1
+				var tru=confirm("点确定修改\n点取消删除")
+				
+				if(tru)
+				{
+				var change1=prompt("改成")	
+				score.splice(num,1,change1)
+				}
+				
+				else
+				score.splice(num,1)
+				score_output()
+			}
+			function score_output()
+			{
+				var n=0,up=0,down=0
+				document.getElementById("score1").innerHTML=score+"<button onclick='del()'class='button button-primary button-circle button-small'style='background-color: #FF4351;border-color: #FF4351;'>⇦</button>&nbsp<button onclick='del_all()'class='button button-primary button-circle button-small'style='background-color: #FF4351;border-color: #FF4351;'>↺</button>&nbsp<button onclick='del_once()'class='button button-primary button-circle button-small'style='background-color: #FF4351;border-color: #FF4351;'>❖</button>"
+				if(score.length<5)
+				{
+					document.getElementById("score2").innerHTML="哎呀"
+					document.getElementById("score3").innerHTML="没有5科我不想给你算"
+				}
+				else
+				{
+					
+				for (i=0;i<score.length;i++)
+				{
+					n+=Number(score[i])
+						if(Number(score[i])>=60)
+						up++
+						else down++	
+				}
+				console.log(up,down);
+				
+				document.getElementById("score2").innerHTML=("<br>平均成绩"+(n/score.length).toFixed(2))
+				if(up==0)document.getElementById("score3").innerHTML=("<br>没人及格好可惜啊")
+				else document.getElementById("score3").innerHTML=("<br>及格率"+up/(up+down))
+				}
+			}
+			function display()
+			{
+				document.getElementById("display").innerHTML="	<input type='text' name='' id='score' value='' placeholder='用空格分隔'/>&nbsp<button class='button button-3d button-primary button-rounded' type='button' onclick='output(3)'>空格输入法</button>&nbsp<button class='button button-3d button-primary button-rounded' type='button' onclick='output(66)'>按钮输入法</button><br><span id='score1'></span><div id='score2'></div><div id='score3'></div></div>"
+			}
+			
+		</script>
+		<div style="line-height: 57px;">
+		<div class="mui-input-row">
+			
+			<input type="text" placeholder="普通输入框" id="text">
+			<button class="button button-3d button-primary button-rounded" type="button" onclick="caculate()" >这是一个计算器(只能算加法)</button>
+		</div>
+		
+		<button class="button button-3d button-primary button-rounded" type="button" onclick="output(1)">16. 输出  100 -- 999之间,所有百位+十位 == 个位的数</button><br />
+		<button class="button button-3d button-primary button-rounded" type="button" onclick="output(2)">17. 输出 10 - 99 之间所有“相邻”的值,如: 23, 54, 98</button><br>
+		
+		<button class="button button-3d button-primary button-rounded" type="button" onclick="output(4)">9.求1~100之间不能被3整除的数之和</button><br />
+		<button class="button button-3d button-primary button-rounded" type="button" onclick="output(5)">12.1~10之间的整数相加，得到的累加值大于20后结束循环</button>
+	<br><button type="button" onclick="display()" class="button button-3d button-primary button-rounded">10.成绩比例层次的调查</button><br>
+	<div id="display"></div>
+		
+	</body>
+</html>
